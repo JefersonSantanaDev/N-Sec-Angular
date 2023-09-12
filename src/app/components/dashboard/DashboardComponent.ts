@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
   public users: any = [];
-  public role: string;
 
   public fullName: string = '';
   constructor(
@@ -25,13 +24,8 @@ export class DashboardComponent implements OnInit {
     });
 
     this.userStore.getFullNameFromStore().subscribe((val) => {
-      let fullNameFromToken = this.auth.getfullNameFromToken();
+      let fullNameFromToken = this.auth.getRoleFromToken();
       this.fullName = val || fullNameFromToken;
-    });
-
-    this.userStore.getRoleFromStore().subscribe((val) => {
-      let roleFromToken = this.auth.getRoleFromToken();
-      this.role = val || roleFromToken;
     });
   }
 
